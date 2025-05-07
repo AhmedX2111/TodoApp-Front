@@ -1,0 +1,28 @@
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  h1 {
+    font-family: 'Roboto', sans-serif;
+    color: #4e73df;
+  }
+  
+  button {
+    transition: background-color 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: #0069d9;
+  }
+  
