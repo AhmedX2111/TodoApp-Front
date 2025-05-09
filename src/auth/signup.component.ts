@@ -36,12 +36,12 @@ export class SignupComponent {
     this.authService.signup(signupData).subscribe(
       (response) => {
         console.log('User signed up:', response);
-        alert('Signup successful! Redirecting to login page.'); // Notify user of success
+        alert('Signup successful! Redirecting to login page.'); 
         this.router.navigate(['/login']);
       },
       (error) => {
         this.errorMessage = 'Signup failed, please try again';
-        alert('Signup failed. Please check your input and try again.'); // Notify user of failure
+        alert('Signup failed. Please check your input and try again.'); 
         console.error('Signup error:', error);
       }
     );
