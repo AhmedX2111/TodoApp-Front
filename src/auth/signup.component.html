@@ -1,0 +1,32 @@
+<div class="signup-container">
+  <form class="signup-form" (ngSubmit)="onSubmit()" #signupForm="ngForm">
+    <h2>Sign Up</h2>
+    <div>
+      <label for="username">Username</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        [(ngModel)]="user.username"
+        required
+      />
+    </div>
+    <div class="password-container">
+      <label for="password">Password</label>
+      <input
+        [type]="isPasswordVisible ? 'text' : 'password'"
+        id="password"
+        name="password"
+        [(ngModel)]="user.password"
+        required
+      />
+      <i
+        class="bi bi-eye"
+        (click)="togglePasswordVisibility()"
+        [ngClass]="{ 'bi-eye-slash': !isPasswordVisible }"
+      ></i>
+    </div>
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+    <button type="submit" [disabled]="!signupForm.form.valid">Sign Up</button>
+  </form>
+</div>
