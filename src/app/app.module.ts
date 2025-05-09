@@ -3,9 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'; // ✅ Required
 import { RouterModule, Routes } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module'; 
 
 import { AppComponent } from './app.component';
 import { TodoComponent } from './todo/todo.component';
+import { LoginComponent } from '../auth/login.component';
+import { SignupComponent } from '../auth/signup.component';
 
 const routes: Routes = [
   { path: '', component: TodoComponent }
@@ -14,12 +17,15 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    TodoComponent
+    TodoComponent,
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule,  // ✅ Fix: allows HttpClient usage
+    HttpClientModule, // ✅ Fix: add HttpClientModule
+    AppRoutingModule, 
     RouterModule.forRoot(routes) // ✅ Fix: register routes
   ],
   providers: [],
