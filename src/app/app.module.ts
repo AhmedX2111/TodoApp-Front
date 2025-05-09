@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'; // ✅ Required
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { AppRoutingModule } from './app-routing.module'; 
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
+import { AppRoutingModule } from './app-routing.module'; 
 import { AppComponent } from './app.component';
-import { TodoComponent } from './todo/todo.component';
 import { LoginComponent } from '../auth/login.component';
 import { SignupComponent } from '../auth/signup.component';
+import { TodoComponent } from './todo/todo.component';
 
 const routes: Routes = [
   { path: '', component: TodoComponent }
@@ -17,16 +18,18 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    TodoComponent,
     LoginComponent,
     SignupComponent,
+    TodoComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule, // ✅ Fix: add HttpClientModule
+    ReactiveFormsModule,
     AppRoutingModule, 
-    RouterModule.forRoot(routes) // ✅ Fix: register routes
+    RouterModule.forRoot(routes),
+    CommonModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
