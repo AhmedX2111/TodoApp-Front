@@ -13,21 +13,26 @@ export class SignupComponent {
   isPasswordVisible = false;
 
   constructor(private authService: AuthService, private router: Router) {
+    // Redirect to /todos if user is already logged in
     if (localStorage.getItem('authToken')) {
       this.router.navigate(['/todos']);
     }
   }
 
+  // Toggle password visibility
   togglePasswordVisibility(): void {
     this.isPasswordVisible = !this.isPasswordVisible;
   }
 
+  // Handle form submission
   onSubmit(): void {
+    // Basic validation for empty fields
     if (!this.user.username || !this.user.password) {
-      alert('Please fill in all required fields.');
+      this.errorMessage = 'Please fill in both username and password.';
       return;
     }
 
+    // Trim spaces for username and password
     const signupData = {
       username: this.user.username.trim(),
       password: this.user.password.trim(),
@@ -36,12 +41,13 @@ export class SignupComponent {
     this.authService.signup(signupData).subscribe(
       (response) => {
         console.log('User signed up:', response);
-        alert('Signup successful! Redirecting to login page.'); 
-        this.router.navigate(['/login']);
+        localStorage.setItem('userId', response.id); // Store UserId in local storage
+        alert('Signup successful! Redirecting to login page.');
+        this.router.navigate(['/login']); // Redirect to login page
       },
       (error) => {
-        this.errorMessage = 'Signup failed, please try again';
-        alert('Signup failed. Please check your input and try again.'); 
+        // Check if backend has any specific error message
+        this.errorMessage = error?.error?.message || 'Signup failed, please try again.';
         console.error('Signup error:', error);
       }
     );

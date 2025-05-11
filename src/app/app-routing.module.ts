@@ -6,9 +6,9 @@ import { TodoComponent } from './todo/todo.component';
 import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'signup', pathMatch: 'full' },
-  { path: 'signup', component: SignupComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
   { path: 'todos', component: TodoComponent, canActivate: [AuthGuard] },
 ];
 
